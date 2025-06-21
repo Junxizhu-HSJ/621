@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义全景图展示</title>
+    
+    <!-- 引入必要资源 -->
+    <link rel="stylesheet" href="https://pannellum.org/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://pannellum.org/js/bootstrap-native.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600%7CSource+Code+Pro:400,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdn.pannellum.org/2.5/pannellum.css"/>
+    <script type="text/javascript" src="https://cdn.pannellum.org/2.5/pannellum.js"></script>
+    <style>
+        body { padding-top: 20px; }
+        .container { max-width: 1200px; }
+        #panorama { height: 500px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">操场示例.2025.06.21</h1>
+        
+        <!-- 全景图容器 -->
+        <div id="panorama" class="mt-4"></div>
+        
+        <script>
+            // 初始化全景查看器
+            pannellum.viewer('panorama', {
+                "default": {
+                    "firstScene": "scene1",      // 设置初始场景
+                    "autoLoad": true,           // 自动加载
+                    "compass": true             // 显示指南针
+                },
+                
+                // 配置你的4张全景图场景
+                "scenes": {
+                    "scene1": {
+                        "title": "场景一",
+                        "type": "equirectangular",
+                        "panorama": "panorama1.jpg",  // 第一张全景图文件名
+                        "hfov": 100,
+                        "pitch": 0,
+                        "yaw": 0,
+                        "hotSpots": [
+                            {
+                                "pitch": -1,    // 正值向上，负值向下（范围：-90° 到 90°）
+                                "yaw": -25,      // 0° 为正前方，正值向右，负值向左（范围：-180° 到 180°）
+                                "type": "scene",
+                                "text": "前往操场中央",
+                                "sceneId": "scene2"
+                            },
+                            {
+                                "pitch": 0,    // 正值向上，负值向下（范围：-90° 到 90°）
+                                "yaw": 29,      // 0° 为正前方，正值向右，负值向左（范围：-180° 到 180°）
+                                 "type": "scene", // 场景切换类型
+                                "text": "前往室内", // 热点显示的文本
+                                "sceneId": "scene4" // 目标场景ID
+                             },
+                             {
+                                "pitch": 2,    // 正值向上，负值向下（范围：-90° 到 90°）
+                                "yaw": 20,      // 0° 为正前方，正值向右，负值向左（范围：-180° 到 180°）
+                                 "type": "scene", // 场景切换类型
+                                "text": "前往看台", // 热点显示的文本
+                                "sceneId": "scene3" // 目标场景ID
+                             }
+                            
+                        ]
+                    },
+                    
+                    "scene2": {
+                        "title": "场景二",
+                        "type": "equirectangular",
+                        "panorama": "panorama2.jpg",  // 第二张全景图文件名
+                        "hfov": 100,
+                        "pitch": 0,
+                        "yaw": 0,
+                        "hotSpots": [
+                            {
+                                "pitch": 1,    // 正值向上，负值向下（范围：-90° 到 90°）
+                                "yaw": 165,      // 0° 为正前方，正值向右，负值向左（范围：-180° 到 180°）
+                                "type": "scene",
+                                "text": "前往操场边侧",
+                                "sceneId": "scene1"
+                            }, 
+                            {
+                                "pitch": 4.5,    // 正值向上，负值向下（范围：-90° 到 90°）
+                                "yaw": 52,      // 0° 为正前方，正值向右，负值向左（范围：-180° 到 180°）
+                                "type": "scene",
+                                "text": "前往看台",
+                                "sceneId": "scene3"
+                            },
+                            {
+                                "pitch": 1,    // 正值向上，负值向下（范围：-90° 到 90°）
+                                "yaw": 95,      // 0° 为正前方，正值向右，负值向左（范围：-180° 到 180°）
+                                 "type": "scene", // 场景切换类型
+                                "text": "前往室内", // 热点显示的文本
+                                "sceneId": "scene4" // 目标场景ID
+                             }
+                             
+                        ]
+                    },
+                    
+                    "scene3": {
+                        "title": "场景三",
+                        "type": "equirectangular",
+                        "panorama": "panorama3.jpg",  // 第三张全景图文件名
+                        "hfov": 100,
+                        "pitch": 0,
+                        "yaw": 0,
+                        "hotSpots": [
+                            {
+                                "pitch": -1.5,    // 正值向上，负值向下（范围：-90° 到 90°）
+                                "yaw": -72,      // 0° 为正前方，正值向右，负值向左（范围：-180° 到 180°）
+                                "type": "scene",
+                                "text": "前往操场边侧",
+                                "sceneId": "scene1"
+                            },
+                            {
+                                "pitch": -2.5,    // 正值向上，负值向下（范围：-90° 到 90°）
+                                "yaw": -41,      // 0° 为正前方，正值向右，负值向左（范围：-180° 到 180°）
+                                "type": "scene",
+                                "text": "前往操场中央",
+                                "sceneId": "scene2"
+                            }
+                        ]
+                    },
+                    
+                    "scene4": {
+                        "title": "场景四",
+                        "type": "equirectangular",
+                        "panorama": "panorama4.jpg",  // 第四张全景图文件名
+                        "hfov": 100,
+                        "pitch": 0,
+                        "yaw": 0,
+                        "hotSpots": [
+                            {
+                                "pitch": 0,    // 正值向上，负值向下（范围：-90° 到 90°）
+                                "yaw": -92.5,      // 0° 为正前方，正值向右，负值向左（范围：-180° 到 180°）
+                                "type": "scene",
+                                "text": "前往操场中央",
+                                "sceneId": "scene2"
+                            }
+                        ]
+                    }
+                }
+            });
+        </script>
+    </div>
+</body>
+</html>
